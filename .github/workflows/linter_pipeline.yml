@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: Where am I?
+        run: pwd
+      - name: Install Dependencies
+        run: npm install
       - name: Run Linter
-        run: |
-          cd ${{ github.workspace }}
-          npm run lint
+        run: npm run lint
