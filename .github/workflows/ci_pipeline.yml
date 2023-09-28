@@ -5,7 +5,7 @@ on:
       - main
   push:
     branches:
-      - '*'
+      - '**'
 jobs:
   CI:
     runs-on: ubuntu-latest
