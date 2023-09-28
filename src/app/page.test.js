@@ -10,8 +10,6 @@ test('Element with "src/app/page.js" should exist', async () => {
 });
 
 it('renders correctly', () => {
-  const tree = renderer
-    .create(<Home />)
-    .toJSON();
+  const tree = renderer.create(<Home />).toJSON();
   expect(tree).toMatchSnapshot();
 });
