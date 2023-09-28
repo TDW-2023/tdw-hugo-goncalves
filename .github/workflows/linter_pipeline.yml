@@ -1,5 +1,5 @@
 name: Next.js Linter
-on: 
+on:
   pull_request:
     branches:
       - main
