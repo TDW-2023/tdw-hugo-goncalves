@@ -1,0 +1,29 @@
+name: CD
+on:
+  push:
+    branches:
+      - '**'
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
+  verify:
+    needs: [install]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Linter
+        run: npm run lint
+      - name: Run Prettier
+        run: npm run prettier
+      - name: Run Tests
+        run: npm run test
+  build:
+    needs: [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Next.js Build & Export
+        run: npm run build
