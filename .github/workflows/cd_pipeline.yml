@@ -4,8 +4,8 @@ on:
     branches:
       - '**'
 jobs:
-  install-verify:
-    name: Install & Verify
+  verify:
+    name: Verify
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -19,8 +19,13 @@ jobs:
       - name: Run Tests
         run: npm run test
   build:
-    needs: [install-verify]
+    name: Build
+    needs: [verify]
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: npm install
       - name: Next.js Build & Export
         run: npm run build
