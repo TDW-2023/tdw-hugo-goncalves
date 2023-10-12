@@ -4,17 +4,14 @@ on:
     branches:
       - '**'
 jobs:
-  install:
+  install-verify:
+    name: Install & Verify
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: npm install
-  verify:
-    needs: [install]
-    runs-on: ubuntu-latest
-    steps:
       - name: Run Linter
         run: npm run lint
       - name: Run Prettier
@@ -22,7 +19,7 @@ jobs:
       - name: Run Tests
         run: npm run test
   build:
-    needs: [verify]
+    needs: [install-verify]
     runs-on: ubuntu-latest
     steps:
       - name: Next.js Build & Export
